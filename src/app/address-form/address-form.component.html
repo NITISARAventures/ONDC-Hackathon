@@ -1,12 +1,41 @@
 <div class="address-form">
-    <form (ngSubmit)="onSubmit()">
-      <div *ngFor="let address of addresses; let i = index">
-        <input type="text" [(ngModel)]="addresses[i]" name="address{{i}}" placeholder="Enter address">
-        <button (click)="removeAddress(i)" type="button">Remove</button>
+  <form (ngSubmit)="onSubmit()">
+    <div *ngFor="let address of addresses; let i = index" class="mb-3">
+      <div class="row">
+        <div class="col-12 mb-2">
+          <input type="text" class="form-control" [(ngModel)]="addresses[i]" name="address{{i}}" placeholder="Enter address">
+        </div>
+        <div class="col-12 mb-2">
+          <button (click)="removeAddress(i)" type="button" class="btn btn-sm btn-outline-secondary">Remove</button>
+        </div>
       </div>
-      <button (click)="addAddress()" type="button">Add Address</button>
-      <button type="submit">Submit</button>
-    </form>
+    </div>
+    <div class="row">
+      <div class="col-12 mb-2">
+        <button (click)="addAddress()" type="button" class="btn btn-sm btn-outline-primary">Add Address</button>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+      </div>
+    </div>
+  </form>
+  
+    <!--<form>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1">
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>-->
 </div>
 
 <router-outlet></router-outlet>

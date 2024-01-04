@@ -1,5 +1,10 @@
+.grid{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
 #map {
     height: 400px; /* or 100vh if you want it to take the full viewport height */
-    width: 75%;
+    width: 100%;
 }
   

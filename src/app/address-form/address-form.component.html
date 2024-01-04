@@ -1,0 +1,13 @@
+<div class="address-form">
+    <form (ngSubmit)="onSubmit()">
+      <div *ngFor="let address of addresses; let i = index">
+        <input type="text" [(ngModel)]="addresses[i]" name="address{{i}}" placeholder="Enter address">
+        <button (click)="removeAddress(i)" type="button">Remove</button>
+      </div>
+      <button (click)="addAddress()" type="button">Add Address</button>
+      <button type="submit">Submit</button>
+    </form>
+</div>
+
+<router-outlet></router-outlet>
+  

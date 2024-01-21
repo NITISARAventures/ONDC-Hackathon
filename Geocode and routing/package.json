@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "leaflet-contextmenu": "^1.4.0",
+    "leaflet-control-geocoder": "^2.4.0",
+    "leaflet-routing-machine": "^3.2.12",
+    "lrm": "^1.0.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  }
+}

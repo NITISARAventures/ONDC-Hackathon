@@ -1,0 +1,4 @@
+first do npm install
+then install leaflet-contextmenu
+then install leaflet-control-geocoder
+then install leaflet-routing-machine

@@ -1,12 +1,14 @@
 <div class="address-form">
-  <form (ngSubmit)="onSubmit()">
-    <div *ngFor="let address of addresses; let i = index" class="mb-3">
-      <div class="row">
-        <div class="col-12 mb-2">
-          <input type="text" class="form-control" [(ngModel)]="addresses[i]" name="address{{i}}" placeholder="Enter address">
-        </div>
-        <div class="col-12 mb-2">
-          <button (click)="removeAddress(i)" type="button" class="btn btn-sm btn-outline-secondary">Remove</button>
+  <form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
+    <div formArrayName="addresses">
+      <div *ngFor="let address of addresses.controls; let i = index" class="mb-3">
+        <div class="row">
+          <div class="col-12 mb-2">
+            <input type="text" class="form-control" [formControlName]="i" placeholder="Enter address">
+          </div>
+          <div class="col-12 mb-2">
+            <button (click)="removeAddress(i)" type="button" class="btn btn-sm btn-outline-secondary">Remove</button>
+          </div>
         </div>
       </div>
     </div>
@@ -19,8 +21,8 @@
       </div>
     </div>
   </form>
-  
 </div>
+
 
 <router-outlet></router-outlet>
   

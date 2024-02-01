@@ -8,15 +8,13 @@ import { GeocodingService } from '../geocoding.service';
 })
 export class AddressFormComponent {
   addresses: string[] = [''];
-  
+
   @Output() coordinates = new EventEmitter<any[]>();
 
   constructor(private geocodingService: GeocodingService) {}
 
   addAddress(): void {
-    if (this.addresses.length < 8) {
-      this.addresses.push('');
-    }
+    this.addresses.push('');
   }
 
   removeAddress(index: number): void {
@@ -26,7 +24,9 @@ export class AddressFormComponent {
   onSubmit(): void {
     this.geocodingService.geocodeAddresses(this.addresses).subscribe(
       (coords) => {
-        this.coordinates.emit(coords);
+        // Filter out null results if any address couldn't be geocoded
+        const validCoords = coords.filter(coord => coord !== null);
+        this.coordinates.emit(validCoords);
       },
       (error) => {
         console.error('Geocoding error:', error);

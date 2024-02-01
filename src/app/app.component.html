@@ -1,4 +1,4 @@
 <div class="grid">
-    <app-address-form></app-address-form>
+    <app-address-form (coordinates)="onCoordinatesReceived($event)"></app-address-form>
     <div id="map" style="height: 400px;"></div>
 </div>

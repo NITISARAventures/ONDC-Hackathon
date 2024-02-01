@@ -7,6 +7,13 @@ import * as L from 'leaflet';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements AfterViewInit {
+
+  onCoordinatesReceived(coords: any[]): void {
+    coords.forEach(coord => {
+      L.marker([coord.lat, coord.lng]).addTo(this.map);
+    });
+  }
+  
   private map: any;
 
   ngAfterViewInit(): void {

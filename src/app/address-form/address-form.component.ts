@@ -29,15 +29,25 @@ export class AddressFormComponent {
   }
 
   onSubmit(): void {
-    this.geocodingService.geocodeAddresses(this.addresses).subscribe(
+    // Extract addresses from the form array
+    const addresses = this.addresses.value.filter((address: string) => address.trim() !== '');
+  
+    if (addresses.length === 0) {
+      console.error('No addresses to geocode');
+      return;
+    }
+  
+    this.geocodingService.geocodeAddresses(addresses).subscribe(
       (coords) => {
-        // Filter out null results if any address couldn't be geocoded
-        const validCoords = coords.filter(coord => coord !== null);
-        this.coordinates.emit(validCoords);
+        // Emit the coordinates for the parent component to use
+        this.coordinates.emit(coords);
+        // Optionally, reset the form or provide user feedback
       },
       (error) => {
         console.error('Geocoding error:', error);
+        // Handle errors, possibly show user feedback
       }
     );
   }
+  
 }

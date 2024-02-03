@@ -19,6 +19,12 @@
       <div class="col-12">
         <button type="submit" class="btn btn-sm btn-primary">Submit</button>
       </div>
+      <br><br>
+      <!-- Add this inside your address-form.component.html -->
+      <div class="col-12">
+        <button *ngIf="addresses.length > 2" (click)="generatePolygon()" type="button" class="btn btn-sm btn-secondary">Generate Polygon</button>
+      </div>
+
     </div>
   </form>
 </div>

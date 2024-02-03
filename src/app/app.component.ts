@@ -1,12 +1,16 @@
 import { Component, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
 
+import { GeocodingService } from './geocoding.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements AfterViewInit {
+
+  constructor(private geocodingService: GeocodingService) {} // Inject the GeocodingService
 
   onCoordinatesReceived(coords: any[]): void {
     coords.forEach(coord => {
@@ -48,5 +52,20 @@ export class AppComponent implements AfterViewInit {
    // Now, when you add a marker, it will use the correct icon
    //L.marker([28.553440, 77.214241]).addTo(this.map);
   }
+
+  // In app.component.ts
+  onGeneratePolygon(addresses: string[]): void {
+    this.geocodingService.geocodeAddresses(addresses).subscribe(coords => {
+      const validCoords = coords.filter(coord => coord !== null);
+      if (validCoords.length > 2) {
+        const latLngs = validCoords.map(coord => [coord.lat, coord.lng]);
+        const polygon = L.polygon(latLngs, {color: 'red'}).addTo(this.map);
+        this.map.fitBounds(polygon.getBounds());
+      } else {
+        console.error('Not enough valid coordinates to generate a polygon');
+      }
+    });
+  }
+
  
 }

@@ -49,5 +49,13 @@ export class AddressFormComponent {
       }
     );
   }
+
+  // In address-form.component.ts
+  @Output() generatePolygonEvent = new EventEmitter<string[]>();
+
+  generatePolygon(): void {
+    this.generatePolygonEvent.emit(this.addresses.value.filter((address: string) => address.trim() !== ''));
+  }
+
   
 }

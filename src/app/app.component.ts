@@ -2,6 +2,7 @@ import { Component, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
 
 import { GeocodingService } from './geocoding.service';
+import { RoutingService } from './routing.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,9 @@ import { GeocodingService } from './geocoding.service';
 })
 export class AppComponent implements AfterViewInit {
 
-  constructor(private geocodingService: GeocodingService) {} // Inject the GeocodingService
+  constructor(
+    private geocodingService: GeocodingService,
+    private routingService: RoutingService) {} // Inject the GeocodingService
 
   onCoordinatesReceived(coords: any[]): void {
     coords.forEach(coord => {
@@ -63,6 +66,17 @@ export class AppComponent implements AfterViewInit {
         this.map.fitBounds(polygon.getBounds());
       } else {
         console.error('Not enough valid coordinates to generate a polygon');
+      }
+    });
+  }
+
+  onGenerateRoutes(addresses: string[]): void {
+    this.geocodingService.geocodeAddresses(addresses).subscribe(coords => {
+      const waypoints = coords.filter(coord => coord !== null).map(coord => L.latLng(coord.lat, coord.lng));
+      if (waypoints.length > 1) {
+        this.routingService.generateRoute(this.map, waypoints);
+      } else {
+        console.error('Not enough coordinates to generate a route');
       }
     });
   }

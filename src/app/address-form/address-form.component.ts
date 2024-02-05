@@ -50,12 +50,20 @@ export class AddressFormComponent {
     );
   }
 
-  // In address-form.component.ts
+  //Polygon generation method
   @Output() generatePolygonEvent = new EventEmitter<string[]>();
 
   generatePolygon(): void {
     this.generatePolygonEvent.emit(this.addresses.value.filter((address: string) => address.trim() !== ''));
   }
+
+  //Route generation method
+  @Output() generateRoutesEvent = new EventEmitter<string[]>();
+
+  generateMotorablePathAndDistance(): void {
+    this.generateRoutesEvent.emit(this.addresses.value.filter((address: string) => address.trim() !== ''));
+  }
+
 
   
 }

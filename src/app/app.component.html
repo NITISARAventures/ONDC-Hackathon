@@ -1,8 +1,11 @@
 <div class="grid">
+
     <app-address-form 
     (coordinates)="onCoordinatesReceived($event)" 
     (generatePolygonEvent)="onGeneratePolygon($event)"
     (generateRoutesEvent)="onGenerateRoutes($event)"
     ></app-address-form>
-    <div id="map" style="height: 400px;"></div>
+
+    <div id="map"></div>
+    <div id="routing-info"></div>
 </div>

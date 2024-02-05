@@ -1,0 +1,9 @@
+.address-form{
+    border:1px grey solid;
+    border-radius: 5px;
+}
+
+.address-form-content{
+    margin: 10px;
+    align-content: center;
+}

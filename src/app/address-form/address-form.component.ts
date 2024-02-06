@@ -41,7 +41,6 @@ export class AddressFormComponent {
       (coords) => {
         // Emit the coordinates for the parent component to use
         this.coordinates.emit(coords);
-        // Optionally, reset the form or provide user feedback
       },
       (error) => {
         console.error('Geocoding error:', error);

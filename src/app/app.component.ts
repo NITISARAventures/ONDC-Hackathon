@@ -13,7 +13,7 @@ export class AppComponent implements AfterViewInit {
 
   constructor(
     private geocodingService: GeocodingService,
-    private routingService: RoutingService) {} // Inject the GeocodingService
+    private routingService: RoutingService) {}
 
   onCoordinatesReceived(coords: any[]): void {
     coords.forEach(coord => {
@@ -36,7 +36,7 @@ export class AppComponent implements AfterViewInit {
     }).addTo(this.map);
   
 
-   // Set the icon's URL to the correct path
+   // Set the icon's URL to the path
    const iconUrl = 'assets/leaflet/images/marker-icon.png';
    const iconRetinaUrl = 'assets/leaflet/images/marker-icon-2x.png';
    const shadowUrl = 'assets/leaflet/images/marker-shadow.png';
@@ -52,11 +52,8 @@ export class AppComponent implements AfterViewInit {
    });
    L.Marker.prototype.options.icon = iconDefault;
 
-   // Now, when you add a marker, it will use the correct icon
-   //L.marker([28.553440, 77.214241]).addTo(this.map);
   }
 
-  // In app.component.ts
   onGeneratePolygon(addresses: string[]): void {
     this.geocodingService.geocodeAddresses(addresses).subscribe(coords => {
       const validCoords = coords.filter(coord => coord !== null);

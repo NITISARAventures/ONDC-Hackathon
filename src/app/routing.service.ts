@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as L from 'leaflet';
-import 'leaflet-routing-machine'; // Ensure you have installed and imported this
+import 'leaflet-routing-machine';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,6 @@ export class RoutingService {
 
   constructor() { }
 
-  // Assuming this method is inside your RoutingService or a similar service
   generateRoute(map: L.Map, waypoints: L.LatLng[]): void {
     const routingControl = L.Routing.control({
       waypoints: waypoints,
@@ -31,7 +30,6 @@ export class RoutingService {
       }
     });
   
-    // Move the itinerary container after the control has been added to the map
     routingControl.on('routingstart', function() {
       const routingContainer = document.querySelector('.leaflet-routing-container');
       const routingInfo = document.getElementById('routing-info');

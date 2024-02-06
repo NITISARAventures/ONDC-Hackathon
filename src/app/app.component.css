@@ -8,7 +8,7 @@
 }
 
 #map {
-    height: 450px; /* or 100vh if you want it to take the full viewport height */
+    height: 450px; 
     border: 0.5px solid grey;
     border-radius: 5px;
 }
